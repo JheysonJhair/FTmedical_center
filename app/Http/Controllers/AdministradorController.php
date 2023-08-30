@@ -14,6 +14,7 @@ class AdministradorController extends Controller
 {
     public function getDatos(Request $request){
         $user = session('datos_enviados'); 
+        
         //realizando consulta de la tablas requeridas
         $atributo=Usuario::join('Empleado as E','E.idEmpleado','=','Usuario.idEmpleado')
         ->join('Dato as D','D.dni','=','E.dni')
@@ -22,6 +23,6 @@ class AdministradorController extends Controller
         ->where('Usuario.usuario','=',$user['usuario'])
         ->where('Usuario.contraseña','=',$user['contraseña'])
         ->get();        
-        return view('dashboard',['atributo'=>$atributo]);
+        return view('dashboard',['atributo'=>$atributo]);        
     }
 }
