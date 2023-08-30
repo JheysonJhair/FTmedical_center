@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,12 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $tipoServicio
  * @property int $nroPiso
  * @property int $nroSala
- * @property string $horarioAtencion
+ * @property Carbon $horarioAtencion
  * @property string|null $estado
  * @property string|null $descripcion
  * 
+ * @property Collection|Rol[] $rols
  * @property Collection|Citum[] $cita
- * @property Collection|Empleado[] $empleados
  *
  * @package App\Models
  */
@@ -36,6 +37,7 @@ class Area extends Model
 	protected $casts = [
 		'nroPiso' => 'int',
 		'nroSala' => 'int',
+		'horarioAtencion' => 'datetime',
 		'estado' => 'binary'
 	];
 
@@ -49,13 +51,14 @@ class Area extends Model
 		'descripcion'
 	];
 
+	public function rols()
+	{
+		return $this->belongsToMany(Rol::class, 'area_rol', 'idArea', 'idRol')
+					->withPivot('idRolArea');
+	}
+
 	public function cita()
 	{
 		return $this->hasMany(Citum::class, 'idArea');
-	}
-
-	public function empleados()
-	{
-		return $this->hasMany(Empleado::class, 'idArea');
 	}
 }

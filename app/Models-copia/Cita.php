@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Citum extends Model
+class Cita extends Model
 {
 	protected $table = 'cita';
 	protected $primaryKey = 'idCita';

@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,15 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $idUsuario
  * @property string|null $usuario
  * @property string|null $contraseña
- * @property string $idEmpleado
  * 
- * @property Empleado $empleado
+ * @property Collection|Rol[] $rols
  *
  * @package App\Models
  */
 class Usuario extends Model
 {
 	protected $table = 'usuario';
+	protected $primaryKey = 'idUsuario';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -31,8 +32,9 @@ class Usuario extends Model
 		'contraseña'
 	];
 
-	public function empleado()
+	public function rols()
 	{
-		return $this->belongsTo(Empleado::class, 'idEmpleado');
+		return $this->belongsToMany(Rol::class, 'rol_usuario', 'idUsuario', 'idRol')
+					->withPivot('idRolUsuario');
 	}
 }

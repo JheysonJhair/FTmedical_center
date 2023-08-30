@@ -7,27 +7,27 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Recetum
+ * Class HistorialClinico
  * 
- * @property string $idReceta
+ * @property string $idHistorial
  * @property int $numero
- * @property string|null $descripcion
- * @property Carbon $fecha
+ * @property string $diagnostico
+ * @property string $tratamiento
+ * @property string $recomendaciones
+ * @property string $idFecha
  * @property string $idEstudiante
+ * @property Carbon $fecha
  * 
  * @property Estudiante $estudiante
- * @property Collection|RecetaMedicamento[] $receta_medicamentos
  *
  * @package App\Models
  */
-class Recetum extends Model
+class HistorialClinico extends Model
 {
-	protected $table = 'receta';
-	protected $primaryKey = 'idReceta';
+	protected $table = 'historial_clinico';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -38,18 +38,14 @@ class Recetum extends Model
 
 	protected $fillable = [
 		'numero',
-		'descripcion',
-		'fecha',
-		'idEstudiante'
+		'diagnostico',
+		'tratamiento',
+		'recomendaciones',
+		'fecha'
 	];
 
 	public function estudiante()
 	{
 		return $this->belongsTo(Estudiante::class, 'idEstudiante');
-	}
-
-	public function receta_medicamentos()
-	{
-		return $this->hasMany(RecetaMedicamento::class, 'idReceta');
 	}
 }

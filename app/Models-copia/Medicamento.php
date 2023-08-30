@@ -6,8 +6,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,12 +14,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $idMedicamento
  * @property string $codigo
  * @property string $nombre
- * @property string|null $tipo
+ * @property string $tipo
  * @property string|null $descripcion
- * @property Carbon $fechaVencimiento
  * @property int $stock
+ * @property string $idAlmacen
+ * @property string $idProveedor
+ * @property string $idReceta
  * 
- * @property Collection|RecetaMedicamento[] $receta_medicamentos
+ * @property Almacen $almacen
+ * @property Proveedor $proveedor
+ * @property Recetum $recetum
  *
  * @package App\Models
  */
@@ -33,7 +35,6 @@ class Medicamento extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'fechaVencimiento' => 'datetime',
 		'stock' => 'int'
 	];
 
@@ -42,12 +43,24 @@ class Medicamento extends Model
 		'nombre',
 		'tipo',
 		'descripcion',
-		'fechaVencimiento',
-		'stock'
+		'stock',
+		'idAlmacen',
+		'idProveedor',
+		'idReceta'
 	];
 
-	public function receta_medicamentos()
+	public function almacen()
 	{
-		return $this->hasMany(RecetaMedicamento::class, 'idMedicamento');
+		return $this->belongsTo(Almacen::class, 'idAlmacen');
+	}
+
+	public function proveedor()
+	{
+		return $this->belongsTo(Proveedor::class, 'idProveedor');
+	}
+
+	public function recetum()
+	{
+		return $this->belongsTo(Recetum::class, 'idReceta');
 	}
 }

@@ -17,9 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $diagnostico
  * @property string $tratamiento
  * @property string $recomendaciones
- * @property string $idFecha
- * @property string $idEstudiante
  * @property Carbon $fecha
+ * @property string $idEstudiante
  * 
  * @property Estudiante $estudiante
  *

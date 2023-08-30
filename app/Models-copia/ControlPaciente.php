@@ -6,7 +6,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $peso
  * @property float $talla
  * @property string|null $IMC
- * @property Carbon|null $fecha
  * @property string $idEstudiante
  * 
  * @property Estudiante $estudiante
@@ -38,8 +36,7 @@ class ControlPaciente extends Model
 	protected $casts = [
 		'temperatura' => 'float',
 		'peso' => 'float',
-		'talla' => 'float',
-		'fecha' => 'datetime'
+		'talla' => 'float'
 	];
 
 	protected $fillable = [
@@ -51,7 +48,6 @@ class ControlPaciente extends Model
 		'peso',
 		'talla',
 		'IMC',
-		'fecha',
 		'idEstudiante'
 	];
 

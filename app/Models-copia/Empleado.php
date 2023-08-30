@@ -16,11 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $especialidad
  * @property string|null $descripcion
  * @property string $dni
- * @property string $idArea
  * 
- * @property Area $area
  * @property Dato $dato
- * @property Collection|Usuario[] $usuarios
+ * @property Collection|Rol[] $rols
  *
  * @package App\Models
  */
@@ -35,18 +33,14 @@ class Empleado extends Model
 		'descripcion'
 	];
 
-	public function area()
-	{
-		return $this->belongsTo(Area::class, 'idArea');
-	}
-
 	public function dato()
 	{
 		return $this->belongsTo(Dato::class, 'dni');
 	}
 
-	public function usuarios()
+	public function rols()
 	{
-		return $this->hasMany(Usuario::class, 'idEmpleado');
+		return $this->belongsToMany(Rol::class, 'rol_empleado', 'idEMPLEADO', 'idRol')
+					->withPivot('idRolEmpleado');
 	}
 }

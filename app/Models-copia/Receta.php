@@ -16,18 +16,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $idReceta
  * @property int $numero
  * @property string|null $descripcion
- * @property Carbon $fecha
+ * @property string $idFecha
  * @property string $idEstudiante
+ * @property Carbon|null $fecha
  * 
  * @property Estudiante $estudiante
- * @property Collection|RecetaMedicamento[] $receta_medicamentos
+ * @property Collection|Medicamento[] $medicamentos
  *
  * @package App\Models
  */
 class Recetum extends Model
 {
 	protected $table = 'receta';
-	protected $primaryKey = 'idReceta';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -39,8 +39,8 @@ class Recetum extends Model
 	protected $fillable = [
 		'numero',
 		'descripcion',
-		'fecha',
-		'idEstudiante'
+		'idEstudiante',
+		'fecha'
 	];
 
 	public function estudiante()
@@ -48,8 +48,8 @@ class Recetum extends Model
 		return $this->belongsTo(Estudiante::class, 'idEstudiante');
 	}
 
-	public function receta_medicamentos()
+	public function medicamentos()
 	{
-		return $this->hasMany(RecetaMedicamento::class, 'idReceta');
+		return $this->hasMany(Medicamento::class, 'idReceta');
 	}
 }
