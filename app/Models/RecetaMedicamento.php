@@ -37,8 +37,8 @@ class RecetaMedicamento extends Model
 		return $this->belongsTo(Medicamento::class, 'idMedicamento');
 	}
 
-	public function recetum()
+	public function receta()
 	{
-		return $this->belongsTo(Recetum::class, 'idReceta');
+		return $this->belongsTo(Receta::class, 'idReceta');
 	}
 }

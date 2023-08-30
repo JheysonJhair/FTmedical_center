@@ -46,7 +46,7 @@ class Estudiante extends Model
 
 	public function cita()
 	{
-		return $this->hasMany(Citum::class, 'idEstudiante');
+		return $this->hasOne(Cita::class, 'idEstudiante');
 	}
 
 	public function consulta_pacientes()
@@ -61,11 +61,11 @@ class Estudiante extends Model
 
 	public function historial_clinicos()
 	{
-		return $this->hasMany(HistorialClinico::class, 'idEstudiante');
+		return $this->hasOne(HistorialClinico::class, 'idEstudiante');
 	}
 
 	public function receta()
 	{
-		return $this->hasMany(Recetum::class, 'idEstudiante');
+		return $this->hasOne(Receta::class, 'idEstudiante');
 	}
 }

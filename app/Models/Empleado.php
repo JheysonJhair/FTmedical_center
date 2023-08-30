@@ -47,6 +47,6 @@ class Empleado extends Model
 
 	public function usuarios()
 	{
-		return $this->hasMany(Usuario::class, 'idEmpleado');
+		return $this->hasOne(Usuario::class, 'idEmpleado');
 	}
 }

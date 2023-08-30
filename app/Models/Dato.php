@@ -38,7 +38,7 @@ class Dato extends Model
 	];
 
 	protected $fillable = [
-		'nombre',
+		'nombreDato',
 		'apellidos',
 		'correo',
 		'fechaNacimiento',
@@ -48,11 +48,11 @@ class Dato extends Model
 
 	public function empleados()
 	{
-		return $this->hasMany(Empleado::class, 'dni');
+		return $this->hasOne(Empleado::class, 'dni');
 	}
 
 	public function estudiantes()
 	{
-		return $this->hasMany(Estudiante::class, 'dni');
+		return $this->hasOne(Estudiante::class, 'dni');
 	}
 }
