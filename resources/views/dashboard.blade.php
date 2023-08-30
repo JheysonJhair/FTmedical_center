@@ -45,27 +45,33 @@
                     <li class="active">
                         <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Panel principal</a>
                     </li>
-                    <p>Nombre: {{ $atributo[0]->nombreDato }}</p>
-                    <p>Especialidad: {{ $atributo[0]->especialidad }}</p>
                     <!-- /.ADMINISTRADOR -->
                     <h3 class="menu-title">ADMINISTRADOR</h3>
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fas fa-user"></i>Usuarios</a>
+                            <a href="#" class="dropdown-toggle @if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                                <i class="menu-icon fas fa-user"></i>Usuarios
+                            </a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="menu-icon fas fa-heartbeat"></i><a href="font-fontawesome.html">Medicina General</a></li>
                                 <li><i class="menu-icon fas fa-tooth"></i><a href="font-fontawesome.html">Dental</a></li>
-                                <li><i class="menu-icon fas fa-hospital"></i><a href="font-fontawesome.html">Topico</a></li>
+                                <li><i class="menu-icon fas fa-hospital"></i><a href="font-fontawesome.html">Tópico</a></li>
                                 <li><i class="menu-icon fas fa-pills"></i><a href="font-fontawesome.html">Farmacia</a></li>
-
                             </ul>
                         </li>
                         <li>
-                            <a href="widgets.html"> <i class="menu-icon fas fa-cog"></i> Configuración</a>
+                            <a href="widgets.html" class="@if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif">
+                                <i class="menu-icon fas fa-cog"></i> Configuración
+                            </a>
                         </li>
+
+                    @if ($atributo[0]->nombre == 'MEDICINA')
                     <!-- /.MEDICINA GENERAL -->
                     <h3 class="menu-title">Medicina General</h3>
                         <li>
-                            <a href="widgets.html"> <i class="menu-icon fas fa-user"></i> Pacientes</a>
+                            <a href="{{ route('dashboard.pacientes') }}"> <i class="menu-icon fas fa-user"></i> Pacientes</a>
                         </li>
                         <li>
                             <a href="widgets.html"> <i class="menu-icon fas fa-folder"></i> Expedientes</a>
@@ -79,6 +85,7 @@
                         <li>
                             <a href="widgets.html"> <i class="menu-icon fas fa-clock"></i> En espera</a>
                         </li>
+                    @elseif ($atributo[0]->nombre == 'FARMACIA')
                     <!-- /.FARMACIA -->
                     <h3 class="menu-title">Farmacia</h3>
                         <li>
@@ -90,11 +97,11 @@
                         <li>
                             <a href="widgets.html"> <i class="menu-icon fas fa-history"></i> Historial</a>
                         </li>
-
+                    @elseif ($atributo[0]->nombre == 'DENTAL')
                     <!-- /.DENTAL -->
                     <h3 class="menu-title">Dental</h3>
                         <li>
-                            <a href="widgets.html"> <i class="menu-icon fas fa-user"></i> Pacientes</a>
+                            <a href="{{ url('dashboard/pacientes') }}"><i class="menu-icon fas fa-user"></i> Pacientes</a>
                         </li>
                         <li>
                             <a href="widgets.html"> <i class="menu-icon fas fa-tooth"></i> Historial dental</a>
@@ -102,7 +109,7 @@
                         <li>
                             <a href="widgets.html"> <i class="menu-icon fas fa-calendar-alt"></i> Citas</a>
                         </li>
-
+                    @elseif ($atributo[0]->nombre == 'TOPICO')
                     <!-- /.TOPICO -->
                     <h3 class="menu-title">Topico</h3>
                         <li>
@@ -114,6 +121,7 @@
                         <li>
                             <a href="widgets.html"> <i class="menu-icon fas fa-notes-medical"></i> Historial Médico</a>
                         </li>
+                    @endif
                 </ul>
             </div>
         </nav>
@@ -135,7 +143,7 @@
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                                <button class="search-close" type="submit"><i style="font-size:20px" class="fa fa-close"></i></button>
                             </form>
                         </div>
 
@@ -211,6 +219,7 @@
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="images/admin.png" alt="User Avatar">
+                            <p style="color:#000; font-weight:bold">{{ $atributo[0]->nombreDato }}</p>
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -220,7 +229,8 @@
 
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Configuracion</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Salir</a>
+                            <a class="nav-link" href="/"><i class="fa fa-power-off"></i> Salir</a>
+
                         </div>
                     </div>
                 </div>

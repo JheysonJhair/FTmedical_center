@@ -14,5 +14,9 @@ Route::controller(loginController::class)->group(function(){
 });
 
 Route::controller(AdministradorController::class)->group(function(){
-    Route::get('/dashboard','getDatos')->name('getDato');    
+    Route::get('/dashboard','getDatos')->name('getDato');
+});
+
+Route::get('dashboard/pacientes', function () {
+    return view('pacientes');
 });
