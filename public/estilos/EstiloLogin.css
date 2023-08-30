@@ -21,7 +21,7 @@ body{
 }
 /**/
 section {
-    background-image: url('/center/public/images/font.jpeg');
+    background-image: url('../images/font.jpeg');
     background-size: cover;
     background-position: center;
     color: white;
