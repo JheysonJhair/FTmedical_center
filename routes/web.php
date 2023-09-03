@@ -7,7 +7,7 @@ use  App\Http\Controllers\UsuarioController;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-
+//Grupo de rutas 
 Route::controller(loginController::class)->group(function(){
     Route::get('/','inicioLogin')->name('inicio');
     Route::post('/login','validar')->name('validarLogin');
@@ -26,6 +26,8 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::put('/Usuarios/{id}','update')->name('updateUsuario');
     Route::delete('/Usuarios/{id}','destroy')->name('destroyUsuario');
 });
+
+//Rutas individuales
 Route::get('dashboard/user', function () {
     return view('user');
 });
