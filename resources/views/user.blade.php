@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <title>Dashboard | Pacientes </title>
+    <title>Dashboard | Usuarios </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-icon.png">
@@ -53,22 +53,17 @@
                         <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Panel principal</a>
                     </li>
 
-                    <!-- /.MEDICINA GENERAL -->
-                    <h3 class="menu-title">Medicina General</h3>
+                    <!-- /.ADMINISTRADOR -->
+                    <h3 class="menu-title">ADMINISTRADOR</h3>
                     <li>
-                        <a href="widgets.html"> <i class="menu-icon fas fa-user"></i> Pacientes</a>
+                        <a href="{{ url('dashboard/user') }}" >
+                            <i class="menu-icon fas fa-user"></i> Usuarios
+                        </a>
                     </li>
                     <li>
-                        <a href="widgets.html"> <i class="menu-icon fas fa-folder"></i> Expedientes</a>
-                    </li>
-                    <li>
-                        <a href="widgets.html"> <i class="menu-icon fas fa-chart-bar"></i> Estadísticas</a>
-                    </li>
-                    <li>
-                        <a href="widgets.html"> <i class="menu-icon fas fa-calendar-alt"></i> Citas</a>
-                    </li>
-                    <li>
-                        <a href="widgets.html"> <i class="menu-icon fas fa-clock"></i> En espera</a>
+                        <a href="widgets.html" >
+                            <i class="menu-icon fas fa-cog"></i> Configuración
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -212,7 +207,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-title">
-                                <h5 class="text-center mt-3" id="titulo">Lista de Pacientes</h5>
+                                <h5 class="text-center mt-3" id="titulo">Lista de Usuarios</h5>
                             </div>
                             <hr>
                             <div id="formularioPaciente" style="display: none;" class="card-body">
@@ -270,7 +265,7 @@
 
                             </div>
                             <div id="tabla" class="card-body">
-                                <button style="margin-bottom:10px; border-radius: 5px" id="agregarPaciente" class="btn btn-primary">Agregar Paciente</button>
+                                <button style="margin-bottom:10px; border-radius: 5px" id="agregarPaciente" class="btn btn-primary">Agregar Usuario</button>
 
 
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -353,13 +348,13 @@
     <script>
     $(document).ready(function() {
         $("#agregarPaciente").click(function() {
-            $("#titulo").text("Registrar Paciente");
+            $("#titulo").text("Registrar Usuario");
             $("#tabla").hide();
             $("#formularioPaciente").show();
         });
 
         $("#regresarTabla").click(function() {
-            $("#titulo").text("Lista de Pacientes");
+            $("#titulo").text("Lista de Usuarios");
             $("#formularioPaciente").hide();
             $("#tabla").show();
         });

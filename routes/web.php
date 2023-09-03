@@ -26,7 +26,11 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::put('/Usuarios/{id}','update')->name('updateUsuario');
     Route::delete('/Usuarios/{id}','destroy')->name('destroyUsuario');
 });
-
+Route::get('dashboard/user', function () {
+    return view('user');
+});
 Route::get('dashboard/pacientes', function () {
     return view('pacientes');
 });
+
+Route::post('/guardar_paciente', 'PacienteController@store')->name('guardar_paciente');

@@ -47,19 +47,10 @@
                     </li>
                     <!-- /.ADMINISTRADOR -->
                     <h3 class="menu-title">ADMINISTRADOR</h3>
-                        <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle @if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                                <i class="menu-icon fas fa-user"></i>Usuarios
+                        <li>
+                            <a href="{{ url('dashboard/user') }}" class="@if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif">
+                                <i class="menu-icon fas fa-user"></i> Usuarios
                             </a>
-                            <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fas fa-heartbeat"></i><a href="font-fontawesome.html">Medicina General</a></li>
-                                <li><i class="menu-icon fas fa-tooth"></i><a href="font-fontawesome.html">Dental</a></li>
-                                <li><i class="menu-icon fas fa-hospital"></i><a href="font-fontawesome.html">Tópico</a></li>
-                                <li><i class="menu-icon fas fa-pills"></i><a href="font-fontawesome.html">Farmacia</a></li>
-                            </ul>
                         </li>
                         <li>
                             <a href="widgets.html" class="@if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif">
