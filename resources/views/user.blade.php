@@ -211,7 +211,7 @@
                             </div>
                             <hr>
                             <div id="formularioPaciente" style="display: none;" class="card-body">
-                            <form action="{{ route('guardar_paciente') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('storeUsuario') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                 <div class="col-6">
@@ -253,12 +253,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="foto">Foto:</label>
                                     <input type="file" name="foto" id="foto" class="form-control-file" accept="image/*" required>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Registrar</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Registrar Usuario</button>
                                     <button type="button" id="regresarTabla" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Regresar</button>
                                 </div>
                             </form>
@@ -271,62 +271,28 @@
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellidos</th>
-                                            <th>Facultad</th>
-                                            <th>Direccion</th>
+                                            <th>Area</th>
+                                            <th>Usuario</th>
+                                            <th>Contraseña</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                    @foreach ($usuarios as $usuario)
                                         <tr>
-                                            <td>Jheyson Jhair</td>
-                                            <td>Arone Angeles</td>
-                                            <td>Ingenieria</td>
-                                            <td>Vella vista baja</td>
+                                            <td>{{ $usuario->idUsuario }}</td>
+                                            <td>{{ $usuario->usuario }}</td>
+                                            <td>{{ $usuario->contraseña }}</td>
+                                            <td>
+                                                <a href="{{ route('editUsuario', ['id' => $usuario->idUsuario]) }}" class="btn btn-primary">Editar</a>
+                                                <form action="{{ route('destroyUsuario', ['id' => $usuario->idUsuario]) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                </form>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>Alex</td>
-                                            <td>Lancho Ramos</td>
-                                            <td>Ingenieria</td>
-                                            <td>Miraflores</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jheyson Jhair</td>
-                                            <td>Arone Angeles</td>
-                                            <td>Ingenieria</td>
-                                            <td>Vella vista baja</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alex</td>
-                                            <td>Lancho Ramos</td>
-                                            <td>Ingenieria</td>
-                                            <td>Miraflores</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jheyson Jhair</td>
-                                            <td>Arone Angeles</td>
-                                            <td>Ingenieria</td>
-                                            <td>Vella vista baja</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alex</td>
-                                            <td>Lancho Ramos</td>
-                                            <td>Ingenieria</td>
-                                            <td>Miraflores</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jheyson Jhair</td>
-                                            <td>Arone Angeles</td>
-                                            <td>Ingenieria</td>
-                                            <td>Vella vista baja</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alex</td>
-                                            <td>Lancho Ramos</td>
-                                            <td>Ingenieria</td>
-                                            <td>Miraflores</td>
-                                        </tr>
+                                    @endforeach
 
                                     </tbody>
                                 </table>

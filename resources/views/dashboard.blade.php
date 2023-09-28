@@ -48,7 +48,7 @@
                     <!-- /.ADMINISTRADOR -->
                     <h3 class="menu-title">ADMINISTRADOR</h3>
                         <li>
-                            <a href="{{ url('dashboard/user') }}" class="@if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif">
+                            <a href="{{ url('Usuarios') }}" class="@if ($atributo[0]->especialidad !== 'ADMINISTRADOR') disabled-link @endif">
                                 <i class="menu-icon fas fa-user"></i> Usuarios
                             </a>
                         </li>

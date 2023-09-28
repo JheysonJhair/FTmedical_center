@@ -14,8 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios=Usuario::all();        
-        return view('getUsuarios',['Usuarios'=>$usuarios]);
+        $usuarios = Usuario::all();
+        return view('user', compact('usuarios'));
     }
 
     /**
@@ -35,15 +35,20 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
-        $id="CMU-"+(string)((int)(substr(Usuario::latest('idUsuario')->first()->idUsuario,4))+1);
-        $usuario=new Usuario;
-        $usuario->idUsuario=$id;
-        $usuario->usuario=$request->usuario;
-        $usuario->contraseña=$request->contraseña;
-        $usuario->idEmpleado=$request->idEmpleado;
+    {
+        // Generar un nuevo ID para el usuario, según tu lógica
+        $id = "CMU-" . (string)((int)(substr(Usuario::latest('idUsuario')->first()->idUsuario, 4)) + 1);
+
+        // Crear una nueva instancia de Usuario
+        $usuario = new Usuario;
+        $usuario->idUsuario = $id;
+        $usuario->usuario = $request->input('usuario');
+        $usuario->contraseña = $request->input('contraseña');
+        $usuario->idEmpleado = 1; // Asigna un valor predeterminado para idEmpleado
         $usuario->save();
-        return redirect()->route('getUsuarios');
+
+        // Redirigir a la vista de lista de usuarios después de crear el usuario
+        return redirect()->route('indexUsuarios');
     }
 
     /**
@@ -66,9 +71,10 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $usuario=Usuario::where('idUsuario',$id)->get();
-        return view('EditUsuario',['usuario'=>$usuario]);
+        $usuario = Usuario::where('idUsuario', $id)->first(); // Usar 'first()' en lugar de 'get()'
+        return view('EditUsuario', compact('usuario'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -79,11 +85,11 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Usuario::where('idUsuario',$id)->update([
-            'usuario'=> $request->usuario,
-            'contraseña'=>$request->contraseña,
-        ]);         
-        return redirect()->route('getUsuarios');
+        Usuario::where('idUsuario', $id)->update([
+            'usuario' => $request->usuario,
+            'contraseña' => $request->contraseña,
+        ]);
+        return redirect()->route('indexUsuarios'); // Redirecciona a la lista de usuarios después de actualizar
     }
 
     /**
